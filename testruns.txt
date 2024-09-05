@@ -1,0 +1,38 @@
+Note: I attempted the optional part. I got close, but couldn't figure out how to generate all subsets of the characters in a string.
+My subanagrams feature is nonfunctional. It fails to generate any subanagrams.
+
+
+test runs:
+
+Enter a word: extremely
+Enter the filename containing the list of words: words_alpha.txt
+Anagrams found for the word 'extremely':
+1.extremely
+No subanagrams found for the word 'extremely' in the file.
+
+Enter a word: fine
+Enter the filename containing the list of words: words_alpha.txt
+Anagrams found for the word 'fine':
+1.enif
+2.fine
+3.neif
+4.nife
+No subanagrams found for the word 'fine' in the file.
+
+Enter the filename containing the list of words: words_alpha.txt
+Anagrams found for the word 'and':
+1.and
+2.dan
+3.nad
+No subanagrams found for the word 'and' in the file.
+
+Enter a word: jsdjhsds
+Enter the filename containing the list of words: words_alpha.txt
+No anagrams found for the word 'jsdjhsds' in the file.
+No subanagrams found for the word 'jsdjhsds' in the file.
+
+Enter a word: andy
+Enter the filename containing the list of words: words_alpha.txt
+Anagrams found for the word 'andy':
+1.andy
+No subanagrams found for the word 'andy' in the file.

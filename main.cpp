@@ -18,10 +18,24 @@ bool areAnagrams(const string &word1, const string &word2) {
   return sortString(word1) == sortString(word2);
 }
 
+// Function to check if two words are subanagrams
+bool areSubAnagrams(const string &word1, const string &word2) {
+  bool isit = 0;
+
+  
+  for(int letter = 0; letter < word1.length(); letter+=1){
+    if(sortString(word1.substr(0,letter)) == sortString(word2)){
+      bool isit = 1;
+    }
+  return isit;
+  }
+}
+
 // Function to find and return all anagrams in the file
-vector<string> findAnagrams(const string &word, const string &filename) {
+vector<string> findAnagrams(const string &word, const string &filename, const int type) {
   ifstream file(filename);
   vector<string> anagrams;
+  vector<string> subanagrams;
   string line;
 
   if (!file.is_open()) {
@@ -29,14 +43,28 @@ vector<string> findAnagrams(const string &word, const string &filename) {
     return anagrams;
   }
 
+  if(type==0){
   while (getline(file, line)) {
     if (areAnagrams(word, line)) {
       anagrams.push_back(line);
     }
   }
+  }
+  if(type==1){
+  while (getline(file, line)) {
+    if (areSubAnagrams(word, line)) {
+      subanagrams.push_back(line);
+    }
+  }
+  }
 
   file.close();
+  if(type==0){
   return anagrams;
+  }
+  if(type==1){
+    return subanagrams;
+  }
 }
 
 int main() {
@@ -51,18 +79,40 @@ int main() {
   cin >> filename;
 
   // Find anagrams in the file
-  vector<string> anagrams = findAnagrams(word, filename);
+  vector<string> anagrams = findAnagrams(word, filename, 0);
+  vector<string> subanagrams = findAnagrams(word, filename, 1);
 
   // Output the results
   if (anagrams.empty()) {
     cout << "No anagrams found for the word '" << word << "' in the file."
          << endl;
-  } else {
+  } 
+  if (!anagrams.empty()) {
     cout << "Anagrams found for the word '" << word << "':" << endl;
+
+    int an_number = 1;
     for (const string &anagram : anagrams) {
-      cout << anagram << endl;
+      cout << an_number << "." << anagram << endl;
+      an_number += 1;
+    }
+    an_number = 1;
+  }
+  if (subanagrams.empty()) {
+  cout << "No subanagrams found for the word '" << word << "' in the file."
+        << endl;
+  }
+  if (!subanagrams.empty()) {
+    cout << "Subanagrams found for the word '" << word << "':" << endl;
+
+    int suban_number = 1;
+    for (const string &subanagram : subanagrams) {
+      cout << suban_number << "." << subanagram << endl;
+      suban_number += 1;
     }
   }
+    
+  
+
 
   return 0;
 }
